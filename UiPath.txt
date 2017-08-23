@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Collections.Specialized;
+using System.Collections;
+
+
+namespace IntergalacticToRoman
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+           
+
+            do
+            {
+                var input = Console.ReadLine();
+                if (string.IsNullOrEmpty(input)) continue;
+                var status = printString(input);
+                Console.WriteLine(status);
+
+            } while (true);
+        }
+        public static string printString(string input)
+        {
+
+            var encodedString = ReverseInputToProcess(input);
+            char[] charArray = input.ToCharArray();
+
+
+            string number = null;
+            char finalValue;
+            foreach (char c in encodedString)
+            {
+                var temp = Convert.ToInt32(number);
+
+                if ((temp > 65 && temp < 120) || temp == 32)
+                {
+                    finalValue = Convert.ToChar(temp);
+                    number = null;
+                }
+                else
+                { number += c; }
+
+            }
+
+            return "";
+        }
+
+        private static string ReverseInputToProcess(string input)
+        {
+            Stack<string> stc = new Stack<string>();
+
+            Stack stack = new Stack(input.Length);
+            foreach (char c in input)
+            {
+                stack.Push(c);
+
+            }
+            string revString = null;
+            foreach (char c in input)
+            {
+                revString += stack.Pop();
+            }
+            return revString;
+        }
+
+    }
+}
