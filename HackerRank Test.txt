@@ -1,0 +1,35 @@
+First line accepting two dimensional array {1,20},{9,20}
+print count the array which element has non repeating degit.
+
+INPUT:
+2
+{1,20}{9,19}
+
+OUTPUT:
+19
+10
+
+
+List<string> num = new List<string>();
+            int firstNum = Convert.ToInt32(arr.GetValue(0, 0));
+            int secNum = Convert.ToInt32(arr.GetValue(0, 1));
+
+            num.Add(firstNum.ToString());
+            for (int i = firstNum; i < secNum; i++)
+            {
+                num.Add((i + 1).ToString());
+                int count = num.Count();
+                if (num[count - 1].ToCharArray().Count() > 1)
+                {
+                    var list = num[count - 1].ToCharArray();
+                    if (list.Count() > 1)
+                    {
+                        if (list[0].ToString() == list[1].ToString())
+                        {
+                            num.RemoveAt(count - 1);
+                        }
+                    }
+                    list = null;
+                }
+            }
+            Console.WriteLine(num.Count());
